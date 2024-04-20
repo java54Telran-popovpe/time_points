@@ -86,12 +86,12 @@ class TimePointTest {
 		assertEquals( 0, timePointArray[4].compareTo(timePointArray[5]));
 		assertEquals( 0, timePointArray[7].compareTo(timePointArray[8]));
 		
-		assertEquals( 180, timePointArray[0].compareTo(timePointArray[1]));
-		assertEquals( 7200, timePointArray[4].compareTo(timePointArray[1]));
-		assertEquals( 120, timePointArray[5].compareTo(timePointArray[1]));
-		assertEquals( -3600, timePointArray[6].compareTo(timePointArray[3]));
-		assertEquals( 5, timePointArray[8].compareTo(timePointArray[2]));
-		assertEquals( -61, timePointArray[12].compareTo(timePointArray[10]));
+		assertEquals( 1, timePointArray[0].compareTo(timePointArray[1]));
+		assertEquals( 1, timePointArray[4].compareTo(timePointArray[1]));
+		assertEquals( 1, timePointArray[5].compareTo(timePointArray[1]));
+		assertEquals( -1, timePointArray[6].compareTo(timePointArray[3]));
+		assertEquals( 1, timePointArray[8].compareTo(timePointArray[2]));
+		assertEquals( -1, timePointArray[12].compareTo(timePointArray[10]));
 	}
 	
 	@Test

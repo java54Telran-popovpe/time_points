@@ -13,7 +13,8 @@ HOUR(3600), MINUTE(60), SECOND(1);
 	
 	public TimePoint between( TimePoint point1, TimePoint point2 ) {
 		TimeUnit commonTimeUnit = getMinTimeUnit( point1.getTimeUnit(), point2.getTimeUnit());
-		return new TimePoint( Math.abs(point1.compareTo(point2)), commonTimeUnit ).convert(this);
+		int resultAmount = Math.abs(point1.convert(commonTimeUnit).getAmount() - point2.convert(commonTimeUnit).getAmount());
+		return new TimePoint(resultAmount, commonTimeUnit ).convert(this) ;
 	}
 	
 	static public TimeUnit getMinTimeUnit( TimeUnit timeUnit1, TimeUnit timeUnit2) {

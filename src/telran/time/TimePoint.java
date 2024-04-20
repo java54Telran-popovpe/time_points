@@ -29,6 +29,7 @@ public class TimePoint implements Comparable<TimePoint> {
 		return adjuster.adjust(this);
 	}
 
+
 	
 	@Override
 	public int hashCode() {
@@ -50,7 +51,7 @@ public class TimePoint implements Comparable<TimePoint> {
 	@Override
 	public int compareTo(TimePoint o) {
 		TimeUnit commonTimeUnit = TimeUnit.getMinTimeUnit(getTimeUnit(), o.getTimeUnit());
-		return convert(commonTimeUnit).getAmount() - o.convert(commonTimeUnit).getAmount();
+		return Integer.compare(convert(commonTimeUnit).getAmount(), o.convert(commonTimeUnit).getAmount());
 	}
 
 
