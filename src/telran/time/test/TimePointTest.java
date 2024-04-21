@@ -96,10 +96,13 @@ class TimePointTest {
 	
 	@Test
 	void futureProximityAdjusterTest() {
-		TimePointAdjuster timePointAdjuster = new ProximityAdjuster(timePointArray);
+		TimePointAdjuster timePointAdjuster = new FutureProximityAdjuster(timePointArray);
 		
 		TimePoint timePointToTest = new TimePoint(-181, TimeUnit.MINUTE).with(timePointAdjuster);
 		assertEquals( new TimePoint(-3, TimeUnit.HOUR),timePointToTest);
+		
+		timePointToTest = new TimePoint(-3, TimeUnit.HOUR).with(timePointAdjuster);
+		assertEquals( new TimePoint(-2, TimeUnit.HOUR),timePointToTest);
 		
 		timePointToTest = new TimePoint(-150, TimeUnit.MINUTE).with(timePointAdjuster);
 		assertEquals( new TimePoint(-2, TimeUnit.HOUR), timePointToTest);
@@ -108,7 +111,7 @@ class TimePointTest {
 		assertEquals( new TimePoint(-1, TimeUnit.MINUTE), timePointToTest);
 		
 		timePointToTest = new TimePoint(-60, TimeUnit.SECOND).with(timePointAdjuster);
-		assertEquals( new TimePoint(-1, TimeUnit.MINUTE), timePointToTest);
+		assertEquals( new TimePoint(0, TimeUnit.MINUTE), timePointToTest);
 		
 		timePointToTest = new TimePoint(3, TimeUnit.SECOND).with(timePointAdjuster);
 		assertEquals( new TimePoint(5, TimeUnit.SECOND), timePointToTest);
@@ -121,6 +124,13 @@ class TimePointTest {
 		assertEquals( new TimePoint(3, TimeUnit.HOUR), timePointToTest);
 		
 		timePointToTest = new TimePoint(181, TimeUnit.MINUTE).with(timePointAdjuster);
+		assertEquals( null, timePointToTest);
+		
+		timePointToTest = new TimePoint(180, TimeUnit.MINUTE).with(timePointAdjuster);
+		assertEquals( null, timePointToTest);
+		
+		timePointAdjuster = new FutureProximityAdjuster( new TimePoint[0] );
+		timePointToTest = new TimePoint(0, TimeUnit.MINUTE).with( timePointAdjuster);
 		assertEquals( null, timePointToTest);
 		
 	}
